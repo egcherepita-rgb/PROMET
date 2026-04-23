@@ -64,11 +64,15 @@ def make_slot_code(week: int, product_direction: str) -> str:
     return f'w{week}-{normalize_code_part(product_direction)}'
 
 
+def percent(part: int, total: int) -> int:
+    return round((part / total) * 100) if total else 0
+
+
 templates.env.filters['status_class'] = status_class
 
 
 @app.get('/', response_class=HTMLResponse)
-def dashboard(request: Request, db: Session = Depends(get_db)):
+def dashboard(request: Request, slot_id: int | None = None, db: Session = Depends(get_db)):
     slots = db.execute(select(Slot).order_by(Slot.product_direction, Slot.week)).scalars().all()
     if not slots:
         return templates.TemplateResponse('empty.html', {'request': request})
@@ -91,6 +95,17 @@ def dashboard(request: Request, db: Session = Depends(get_db)):
         'vacation': sum(1 for s in slots if s.status == 'Отпуск'),
     }
 
+    modal_slot = db.get(Slot, slot_id) if slot_id else None
+    if slot_id and not modal_slot:
+        raise HTTPException(status_code=404, detail='Слот не найден')
+
+    summary_cards = [
+        {'label': 'Заполнено', 'value': f"{percent(stats['booked'] + stats['pre'], total)}%", 'hint': 'занятые и в работе'},
+        {'label': 'Направлений', 'value': len(directions), 'hint': 'активных строк в матрице'},
+        {'label': 'Недель', 'value': len(weeks), 'hint': 'периодов в календаре'},
+        {'label': 'Свободный резерв', 'value': stats['free'], 'hint': 'доступно для брони'},
+    ]
+
     return templates.TemplateResponse(
         'dashboard.html',
         {
@@ -100,6 +115,9 @@ def dashboard(request: Request, db: Session = Depends(get_db)):
             'periods': periods,
             'matrix': matrix,
             'stats': stats,
+            'summary_cards': summary_cards,
+            'meta': load_meta(db),
+            'modal_slot': modal_slot,
         },
     )
 

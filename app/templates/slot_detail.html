@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}Редактирование слота{% endblock %}
+{% block nav_slots %}active{% endblock %}
 {% block content %}
 <section class="detail-grid">
   <div class="panel">
@@ -13,7 +14,7 @@
 
     <div class="summary-grid">
       <div><span>Код слота</span><strong>{{ slot.slot_code }}</strong></div>
-      <div><span>Статус</span><strong>{{ slot.status }}</strong></div>
+      <div><span>Статус</span><strong><span class="badge {{ slot.status|status_class }}">{{ slot.status }}</span></strong></div>
       <div><span>Филиал</span><strong>{{ slot.branch or '—' }}</strong></div>
       <div><span>Приоритет</span><strong>{{ slot.priority or '—' }}</strong></div>
     </div>
