@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Продажи — ПРАКТИК Home</title>
+<style>
+:root{
+  --bg:#f4f7fb;--card:#ffffff;--line:#dce6f2;--text:#1c2635;--muted:#667085;--brand:#114a8b;--brand-2:#1d67b8;--brand-3:#eaf3ff;--success:#eaf7ef;--warning:#fff6e5;--danger:#fff1f2;--shadow:0 12px 32px rgba(17,74,139,.10);--radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text)}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit}
+.layout{min-height:100vh;display:grid;grid-template-columns:280px 1fr}
+.sidebar{position:sticky;top:0;height:100vh;background:linear-gradient(180deg,#103d74 0%, #0f4d93 100%);color:#fff;padding:18px;overflow:auto}
+.brand-link{display:flex;gap:12px;align-items:center;color:#fff;text-decoration:none;margin-bottom:18px}
+.brand-logo-wrap{width:64px;height:64px;border-radius:16px;background:#fff;display:flex;align-items:center;justify-content:center;padding:6px;flex:0 0 64px}
+.brand-logo{max-width:100%;max-height:100%;object-fit:contain}
+.brand-copy h1{margin:0;font-size:20px;line-height:1.1}
+.brand-copy p{margin:4px 0 0;color:rgba(255,255,255,.8);font-size:13px;line-height:1.4}
+.nav{display:grid;gap:6px}
+.nav a{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:12px;color:#fff}
+.nav a:hover,.nav a.active{background:rgba(255,255,255,.14)}
+.content{padding:20px;min-width:0}
+.mobile-topbar{display:none;position:sticky;top:0;z-index:30;background:rgba(244,247,251,.92);backdrop-filter:blur(10px);padding:12px 0 14px}
+.mobile-topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px 12px;box-shadow:var(--shadow)}
+.menu-btn{border:none;background:var(--brand);color:#fff;border-radius:12px;padding:10px 12px;font-weight:700}
+.mobile-drawer{position:fixed;inset:0;background:rgba(8,15,26,.55);z-index:60;display:none}
+.mobile-drawer.open{display:block}
+.mobile-drawer-panel{width:min(86vw,360px);height:100%;background:linear-gradient(180deg,#103d74 0%, #0f4d93 100%);color:#fff;padding:18px;overflow:auto}
+.section{margin:24px 0}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:14px}
+.section-head h3{margin:0;font-size:28px}
+.section-head p{margin:6px 0 0;color:var(--muted);line-height:1.55}
+.grid{display:grid;gap:16px}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow)}
+.card h4{margin:0 0 8px;font-size:20px}
+.card p{margin:0;color:var(--muted);line-height:1.6}
+.page-header{background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:var(--shadow);margin-bottom:20px}
+.breadcrumbs{font-size:14px;color:var(--muted);margin-bottom:10px}
+.list{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.list li{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow)}
+.footer{margin-top:30px;padding:18px 20px;background:#fff;border:1px solid var(--line);border-radius:18px;color:var(--muted);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.field{display:grid;gap:6px}
+.field label{font-size:14px;color:var(--muted);font-weight:700}
+.field input,.field select{padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.result-box{display:grid;gap:8px}
+.result-row{display:flex;justify-content:space-between;gap:12px;padding:12px 14px;background:#f8fbff;border-radius:12px;border:1px solid #e2eefb}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.tab-btn{padding:10px 12px;border-radius:999px;border:1px solid var(--line);background:#fff;cursor:pointer;font-weight:800}
+.tab-btn.active{background:var(--brand);border-color:var(--brand);color:#fff}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.danger-box{background:var(--danger);border:1px solid #fecdd3;color:#9f1239;padding:12px 14px;border-radius:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 16px;border-radius:14px;font-weight:800;border:none;cursor:pointer}
+.btn-primary{background:var(--brand);color:#fff}
+.btn-ghost{background:var(--brand-3);color:var(--brand);border:1px solid #cfe2fb}
+.muted-small{font-size:13px;color:var(--muted)}
+
+.sales-hero{
+  background:linear-gradient(135deg,#103d74 0%,#1a5ca4 58%,#2d79cf 100%);
+  color:#fff;border-radius:26px;padding:28px;box-shadow:0 18px 36px rgba(17,74,139,.18);
+  display:grid;grid-template-columns:1.2fr .8fr;gap:18px
+}
+.sales-hero h2{margin:0 0 10px;font-size:38px;line-height:1.08}
+.sales-hero p{margin:0;color:rgba(255,255,255,.9);line-height:1.65;font-size:16px;max-width:760px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
+  background:rgba(255,255,255,.14);font-weight:800;margin-bottom:12px
+}
+.hero-stats{display:grid;gap:12px}
+.hero-stat{
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.16);border-radius:18px;
+  padding:16px
+}
+.hero-stat strong{display:block;font-size:26px;margin-bottom:4px}
+.hero-stat span{display:block;color:rgba(255,255,255,.88);line-height:1.45}
+
+.quick-nav{
+  display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 6px
+}
+.quick-chip{
+  display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;
+  background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);font-weight:800;color:var(--brand)
+}
+
+.sales-kpi-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.sales-kpi{
+  position:relative;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 16px 14px;
+  box-shadow:var(--shadow);overflow:hidden
+}
+.sales-kpi::before{
+  content:"";position:absolute;left:0;top:0;width:100%;height:4px;
+  background:linear-gradient(90deg,#1d67b8,#7fb5ff)
+}
+.sales-kpi strong{display:block;font-size:24px;color:var(--brand);margin-bottom:6px}
+.sales-kpi span{display:block;color:var(--muted);line-height:1.45;font-size:14px}
+
+.adv-card{
+  padding:20px;border-radius:22px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);
+  display:grid;gap:14px;min-height:100%
+}
+.adv-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.adv-num{
+  width:44px;height:44px;border-radius:14px;background:var(--brand-3);color:var(--brand);
+  display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;flex:0 0 44px
+}
+.adv-tag{
+  display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:#f6faff;
+  border:1px solid #d9e7f8;color:#305f99;font-size:12px;font-weight:800
+}
+.adv-card h4{margin:0;font-size:20px;line-height:1.3}
+.adv-card p{margin:0;color:var(--muted);line-height:1.65}
+.adv-note{
+  padding:12px 14px;border-radius:14px;background:#f8fbff;border:1px solid #e1ecfa;
+  color:#23456e;font-size:14px;line-height:1.5
+}
+
+.sell-box,.value-box{
+  background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:var(--shadow);height:100%
+}
+.sell-box h4,.value-box h4{margin:0 0 12px;font-size:22px}
+.argument-list{display:grid;gap:12px}
+.argument{
+  display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:flex-start;
+  padding:12px 14px;border-radius:16px;background:#f8fbff;border:1px solid #e1ecfa
+}
+.argument-mark{
+  width:34px;height:34px;border-radius:12px;background:var(--brand);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:900
+}
+.argument strong{display:block;margin-bottom:4px}
+.argument span{display:block;color:var(--muted);line-height:1.55}
+
+.value-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.value-tile{
+  padding:16px;border-radius:18px;border:1px solid var(--line);background:linear-gradient(180deg,#ffffff 0%,#f8fbff 100%)
+}
+.value-tile strong{display:block;margin-bottom:8px;color:var(--brand);font-size:16px}
+.value-tile p{margin:0;color:var(--muted);line-height:1.55;font-size:14px}
+
+.calculator-section{
+  background:linear-gradient(180deg,#f8fbff 0%,#f4f7fb 100%);border:1px solid var(--line);border-radius:26px;padding:18px
+}
+.calc-card{
+  background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:var(--shadow);height:100%
+}
+.calc-card h4{margin:0 0 8px;font-size:22px}
+.calc-card p{margin:0;color:var(--muted);line-height:1.6}
+.calc-hint{
+  margin-top:12px;padding:12px 14px;border-radius:14px;background:#f8fbff;border:1px solid #e1ecfa;color:#35598a;font-size:14px;line-height:1.5
+}
+.result-box:empty{display:none}
+
+@media (max-width:1180px){
+  .grid-3,.grid-2,.sales-hero,.form-grid,.value-grid,.sales-kpi-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:960px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{display:none}
+  .content{padding:12px}
+  .mobile-topbar{display:block}
+  .sales-hero,.grid-3,.grid-2,.form-grid,.value-grid,.sales-kpi-grid{grid-template-columns:1fr}
+  .sales-hero h2{font-size:30px}
+}
+@media (max-width:720px){
+  .section-head{flex-direction:column;align-items:flex-start}
+  .page-header{padding:18px}
+  .sales-hero{padding:22px;border-radius:22px}
+  .sales-hero h2{font-size:26px}
+  .quick-nav{gap:8px}
+  .quick-chip{width:100%;justify-content:center}
+  .argument{grid-template-columns:1fr}
+  .argument-mark{width:32px;height:32px}
+}
+
+.sales-hero-centered{display:block;text-align:center;padding:34px 28px}
+.sales-hero-centered .hero-center-wrap{max-width:920px;margin:0 auto}
+.sales-hero-centered h2{max-width:920px;margin:0 auto 14px}
+.sales-hero-centered p{max-width:760px;margin:0 auto 20px}
+.sales-hero-centered .quick-nav{justify-content:center}
+.tool-card{min-height:100%}
+
+</style>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){
+m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+m[i].l=1*new Date();
+for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+})(window, document,"script","https://mc.yandex.ru/metrika/tag.js?id=108779561","ym");
+ym(108779561,"init",{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/108779561" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <a class="brand-link" href="index.html">
+      <div class="brand-logo-wrap"><img class="brand-logo" src="assets/praktik_home.png" alt="ПРАКТИК Home"></div>
+      <div class="brand-copy"><h1>ПРАКТИК Home</h1><p>Внутренний портал по Гардеробной Системе ПРАКТИК Home</p></div>
+    </a>
+    <nav class="nav">
+      <a href="index.html"><span>🏠</span><span>Главная</span></a>
+      <a href="production.html"><span>🏭</span><span>Производство</span></a>
+      <a href="competitors.html"><span>⚔</span><span>Конкуренты</span></a>
+      <a href="sales.html" class="active"><span>💰</span><span>Продажи</span></a>
+      <a href="training.html"><span>🎓</span><span>Обучение</span></a>
+      <a href="tools.html"><span>📚</span><span>Полезные материалы</span></a>
+      <a href="news.html"><span>📰</span><span>Новости</span></a>
+      <a href="feedback.html"><span>💡</span><span>Улучшения сайта</span></a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <div class="mobile-topbar">
+      <div class="mobile-topbar-inner">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div class="brand-logo-wrap" style="width:46px;height:46px;border-radius:12px">
+            <img class="brand-logo" src="assets/praktik_home.png" alt="ПРАКТИК Home">
+          </div>
+          <div><strong>ПРАКТИК Home</strong><div class="muted-small">Гардеробная система</div></div>
+        </div>
+        <button class="menu-btn" data-open-menu>Меню</button>
+      </div>
+    </div>
+
+    <div class="mobile-drawer" id="drawer">
+      <div class="mobile-drawer-panel">
+        <a class="brand-link" href="index.html">
+          <div class="brand-logo-wrap"><img class="brand-logo" src="assets/praktik_home.png" alt="ПРАКТИК Home"></div>
+          <div class="brand-copy"><h1>ПРАКТИК Home</h1><p>Внутренний портал по Гардеробной Системе ПРАКТИК Home</p></div>
+        </a>
+        <nav class="nav">
+          <a href="index.html"><span>🏠</span><span>Главная</span></a>
+          <a href="production.html"><span>🏭</span><span>Производство</span></a>
+          <a href="competitors.html"><span>⚔</span><span>Конкуренты</span></a>
+          <a href="sales.html" class="active"><span>💰</span><span>Продажи</span></a>
+          <a href="training.html"><span>🎓</span><span>Обучение</span></a>
+          <a href="tools.html"><span>📚</span><span>Полезные материалы</span></a>
+          <a href="news.html"><span>📰</span><span>Новости</span></a>
+          <a href="feedback.html"><span>💡</span><span>Улучшения сайта</span></a>
+        </nav>
+        <div style="margin-top:12px"><button class="menu-btn" data-close-menu>Закрыть меню</button></div>
+      </div>
+    </div>
+
+    <div class="page-header">
+      <div class="breadcrumbs">Главная / Продажи</div>
+
+      
+<section class="sales-hero sales-hero-centered">
+        <div class="hero-center-wrap">
+          <div class="hero-badge">💰 Продажи и аргументы</div>
+            <p>Ключевые преимущества и аргументы собраны в понятные блоки.</p>
+
+          <div class="quick-nav">
+            <a class="quick-chip" href="#advantages">Преимущества</a>
+            <a class="quick-chip" href="#scripts">Как продавать</a>
+            
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <section class="section">
+      <div class="sales-kpi-grid">
+        <div class="sales-kpi"><strong>Функционально</strong><span>Система закрывает разные сценарии хранения и легко масштабируется.</span></div>
+        <div class="sales-kpi"><strong>Надёжно</strong><span>Сталь, порошковая окраска и 10 лет гарантии усиливают доверие клиента.</span></div>
+        <div class="sales-kpi"><strong>Гибко</strong><span>Подходит под нишу, шкаф, комнату, гараж и хозяйственные зоны.</span></div>
+        <div class="sales-kpi"><strong>Быстро</strong><span>Фиксированные размеры и наличие на складе ускоряют подбор и продажу.</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="advantages">
+      <div class="section-head">
+        <div>
+          <h3>Преимущества гардеробной системы ПРАКТИК Home</h3>
+          <p>Вместо большого массива текста — шесть самостоятельных карточек, которые легко сканируются взглядом.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="adv-card">
+          <div class="adv-top">
+            <div class="adv-num">01</div>
+            <div class="adv-tag">Для клиента</div>
+          </div>
+          <h4>Эффективное хранение</h4>
+          <p>Система помогает организовать хранение одежды и бытовых вещей по типу и сезону. Полки, корзины, брючницы и обувницы позволяют эффективнее использовать стену и разместить больше вещей на том же пространстве.</p>
+          <div class="adv-note">Хороший аргумент в продаже: клиент быстро понимает практическую выгоду, а не только внешний вид.</div>
+        </div>
+
+        <div class="adv-card">
+          <div class="adv-top">
+            <div class="adv-num">02</div>
+            <div class="adv-tag">Комфорт</div>
+          </div>
+          <h4>Обзор и вентиляция</h4>
+          <p>Открытая конструкция делает вещи хорошо видимыми, а сетчатые полки и корзины обеспечивают вентиляцию, больше света и помогают избежать посторонних запахов при хранении.</p>
+          <div class="adv-note">Аргумент для розницы: удобно показать отличие от закрытых и менее «дышащих» решений.</div>
+        </div>
+
+        <div class="adv-card">
+          <div class="adv-top">
+            <div class="adv-num">03</div>
+            <div class="adv-tag">Гибкость</div>
+          </div>
+          <h4>Под любое помещение</h4>
+          <p>Гардеробную можно адаптировать под нишу, проём, отдельную комнату, шкаф, гараж или хозяйственную зону. Это конструктор, который подстраивается под разные сценарии хранения.</p>
+          <div class="adv-note">Подходит как универсальный довод, когда клиент ещё не определился с конечной конфигурацией.</div>
+        </div>
+
+        <div class="adv-card">
+          <div class="adv-top">
+            <div class="adv-num">04</div>
+            <div class="adv-tag">Надёжность</div>
+          </div>
+          <h4>Долговечность</h4>
+          <p>Элементы изготовлены из высококачественной стали и покрыты порошковой краской, что обеспечивает длительный срок службы и сохранение эксплуатационных свойств. Гарантия на систему — 10 лет.</p>
+          <div class="adv-note">Снимает типовое опасение клиента: «а не деформируется ли система со временем?»</div>
+        </div>
+
+        <div class="adv-card">
+          <div class="adv-top">
+            <div class="adv-num">05</div>
+            <div class="adv-tag">Модульность</div>
+          </div>
+          <h4>Легко модернизировать</h4>
+          <p>Систему можно доукомплектовать, перестроить под новые задачи, разобрать при переезде или ремонте и затем установить заново без полной замены решения.</p>
+          <div class="adv-note">Полезный аргумент для клиентов, которые хотят начать с базового набора и расшириться позже.</div>
+        </div>
+
+        <div class="adv-card">
+          <div class="adv-top">
+            <div class="adv-num">06</div>
+            <div class="adv-tag">Скорость сделки</div>
+          </div>
+          <h4>Экономия времени и денег</h4>
+          <p>Фиксированные размеры и наличие ассортимента на складе позволяют быстро подобрать решение и смонтировать его в день обращения. Лёгкий монтаж снижает затраты на сборку, а компактная упаковка удобна для перевозки.</p>
+          <div class="adv-note">Сильный довод для дилеров: проще продать решение, которое можно быстро подобрать и отгрузить.</div>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="section" id="scripts">
+      <div class="section-head">
+        <div>
+          <h3>Как продавать</h3>
+          <p>Готовые формулировки и короткие аргументы, которые можно использовать прямо в разговоре с клиентом.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="sell-box">
+          <h4>Почему это удобно продавать</h4>
+          <div class="argument-list">
+            <div class="argument">
+              <div class="argument-mark">1</div>
+              <div><strong>Скандинавский дизайн</strong><span>Система легко вписывается в современный интерьер и выглядит актуально для широкой аудитории.</span></div>
+            </div>
+            <div class="argument">
+              <div class="argument-mark">2</div>
+              <div><strong>Широкий ассортимент</strong><span>Можно собрать решение под разные потребности клиента и под разный бюджет.</span></div>
+            </div>
+            <div class="argument">
+              <div class="argument-mark">3</div>
+              <div><strong>Конкурентная цена</strong><span>Современное производство и автоматизация помогают держать привлекательный ценовой уровень.</span></div>
+            </div>
+            <div class="argument">
+              <div class="argument-mark">4</div>
+              <div><strong>Понятная выгода</strong><span>Функционально, долговечно, проветривается и легко модернизируется — это легко доносится даже в коротком диалоге.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="value-box">
+          <h4>Ценности продукта</h4>
+          <div class="value-grid">
+            <div class="value-tile">
+              <strong>Качество</strong>
+              <p>Современное оборудование и качественные материалы помогают держать стабильный уровень продукта.</p>
+            </div>
+            <div class="value-tile">
+              <strong>Инновации</strong>
+              <p>Ассортимент развивается вместе с запросами потребителей и сценариями использования.</p>
+            </div>
+            <div class="value-tile">
+              <strong>Ассортимент</strong>
+              <p>Более 200 артикулов позволяют собирать решения под индивидуальные задачи клиента.</p>
+            </div>
+            <div class="value-tile">
+              <strong>Опытные сотрудники</strong>
+              <p>Продукт развивают специалисты, которые понимают реальные сценарии хранения и потребности рынка.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h3>Готовые фразы для продажи</h3>
+          <p>Короткие ответы, которые помогают быстрее вести диалог и снимать типовые сомнения клиента.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="sell-box">
+          <h4>Если клиент сомневается</h4>
+          <div class="argument-list">
+            <div class="argument"><div class="argument-mark">✓</div><div><strong>Решение надолго</strong><span>Эту систему можно не менять целиком — её легко доукомплектовать и перестроить под новые задачи.</span></div></div>
+            <div class="argument"><div class="argument-mark">✓</div><div><strong>Без переплаты</strong><span>Собираем именно под задачу клиента, без лишних элементов и ненужного объёма.</span></div></div>
+            <div class="argument"><div class="argument-mark">✓</div><div><strong>Можно расширить позже</strong><span>Если потребности изменятся, дополнительные элементы можно докупить отдельно.</span></div></div>
+          </div>
+        </div>
+
+        <div class="sell-box">
+          <h4>Если сравнивают со шкафом</h4>
+          <div class="argument-list">
+            <div class="argument"><div class="argument-mark">✓</div><div><strong>Больше функциональности</strong><span>На том же пространстве можно организовать хранение заметно эффективнее.</span></div></div>
+            <div class="argument"><div class="argument-mark">✓</div><div><strong>Лучшая вентиляция</strong><span>Вещи не залеживаются, меньше риска посторонних запахов и сырости.</span></div></div>
+            <div class="argument"><div class="argument-mark">✓</div><div><strong>Всё на виду</strong><span>Клиент сразу видит содержимое, не нужно перебирать стопки и искать нужную вещь.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  
+
+    <div class="footer">
+      <div>Портал ПРАКТИК Home</div>
+      <div>Разработано специалистами по развитию товарного направления Гардеробные Системы, 2026 год</div>
+    </div>
+  </main>
+</div>
+
+</body>
+</html>

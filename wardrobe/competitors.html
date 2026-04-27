@@ -1,0 +1,1008 @@
+<!doctype html>
+<html lang='ru'>
+<head>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<title>Конкуренты — ПРАКТИК Home</title>
+<style>
+:root{
+  --bg:#f4f7fb;--card:#ffffff;--line:#dce6f2;--text:#1c2635;--muted:#667085;--brand:#114a8b;--brand-2:#1d67b8;--brand-3:#eaf3ff;--success:#eaf7ef;--warning:#fff6e5;--danger:#fff1f2;--shadow:0 12px 32px rgba(17,74,139,.10);--radius:18px;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text)} a{color:inherit;text-decoration:none} button,input,select{font:inherit}
+.layout{min-height:100vh;display:grid;grid-template-columns:280px 1fr}
+.sidebar{position:sticky;top:0;height:100vh;background:linear-gradient(180deg,#103d74 0%, #0f4d93 100%);color:#fff;padding:18px;overflow:auto}
+.brand-link{display:flex;gap:12px;align-items:center;color:#fff;text-decoration:none;margin-bottom:18px}
+.brand-logo-wrap{width:64px;height:64px;border-radius:16px;background:#fff;display:flex;align-items:center;justify-content:center;padding:6px;flex:0 0 64px}
+.brand-logo{max-width:100%;max-height:100%;object-fit:contain}
+.brand-copy h1{margin:0;font-size:20px;line-height:1.1}.brand-copy p{margin:4px 0 0;color:rgba(255,255,255,.8);font-size:13px;line-height:1.4}
+.nav{display:grid;gap:6px}.nav a{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:12px;color:#fff}.nav a:hover,.nav a.active{background:rgba(255,255,255,.14)}
+.content{padding:20px;min-width:0}
+.mobile-topbar{display:none;position:sticky;top:0;z-index:30;background:rgba(244,247,251,.92);backdrop-filter:blur(10px);padding:12px 0 14px}
+.mobile-topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px 12px;box-shadow:var(--shadow)}
+.menu-btn{border:none;background:var(--brand);color:#fff;border-radius:12px;padding:10px 12px;font-weight:700}
+.mobile-drawer{position:fixed;inset:0;background:rgba(8,15,26,.55);z-index:60;display:none}.mobile-drawer.open{display:block}
+.mobile-drawer-panel{width:min(86vw,360px);height:100%;background:linear-gradient(180deg,#103d74 0%, #0f4d93 100%);color:#fff;padding:18px;overflow:auto}
+.page-header{background:#fff;border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:var(--shadow);margin-bottom:20px;text-align:center}
+.breadcrumbs{font-size:14px;color:var(--muted);margin-bottom:8px;text-align:left}.page-header h2{margin:0 0 8px;font-size:34px}.page-header p{margin:0 auto;color:var(--muted);line-height:1.6;max-width:980px;text-align:center}
+.page-title-wow-wrap{display:grid;justify-items:center;gap:10px;padding:8px 0 2px}
+.page-title-kicker{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:8px 14px;border-radius:999px;
+  background:linear-gradient(90deg,#edf5ff 0%, #eef8e9 100%);
+  border:1px solid #d6e5f7;color:#31537d;
+  font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;
+  box-shadow:0 8px 18px rgba(17,74,139,.08)
+}
+.page-title-wow{
+  margin:0;
+  font-size:46px;
+  line-height:1.08;
+  font-weight:900;
+  text-align:center;
+  letter-spacing:-.02em;
+  background:linear-gradient(90deg,#103d74 0%, #1d67b8 48%, #2f7a17 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  text-shadow:0 10px 24px rgba(17,74,139,.10);
+  position:relative;
+}
+.page-title-wow::after{
+  content:'';
+  display:block;
+  width:120px;
+  height:6px;
+  margin:16px auto 0;
+  border-radius:999px;
+  background:linear-gradient(90deg,#8dc63f 0%, #1d67b8 100%);
+  box-shadow:0 10px 22px rgba(29,103,184,.18);
+}
+.page-title-subline{
+  max-width:900px;
+  margin:0 auto;
+  text-align:center;
+  color:#5f728d;
+  font-size:16px;
+  font-weight:700;
+  line-height:1.5;
+}
+@media (max-width:1180px){
+  .page-title-wow{font-size:38px}
+}
+@media (max-width:760px){
+  .page-title-wow-wrap{gap:8px}
+  .page-title-kicker{font-size:10px;letter-spacing:.1em;padding:7px 10px}
+  .page-title-wow{font-size:30px;line-height:1.12}
+  .page-title-wow::after{width:84px;height:5px;margin-top:12px}
+  .page-title-subline{font-size:14px;max-width:100%}
+}
+
+.section{margin:24px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:14px}.section-head h3{margin:0;font-size:26px}.section-head p{margin:4px 0 0;color:var(--muted)}
+.footer{margin-top:30px;padding:18px 20px;background:#fff;border:1px solid var(--line);border-radius:18px;color:var(--muted);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.muted-small{font-size:13px;color:var(--muted)}
+
+.market-chart,.market-share,.competitor-card{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}
+.market-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
+.market-chart,.market-share{padding:20px;display:flex;flex-direction:column;height:430px}
+.block-title{margin:0 0 14px;font-size:22px}
+.chart-shell{position:relative;flex:1;border-radius:20px;background:linear-gradient(180deg,#f8fbff 0%,#eef4fb 100%);border:1px solid #e1ebf8;padding:14px 14px 46px;overflow:hidden}
+.chart-grid{position:absolute;inset:18px 14px 46px 14px;background:
+  linear-gradient(to top, rgba(110,142,183,.16) 1px, transparent 1px);
+  background-size:100% 20%;
+  pointer-events:none}
+.growth-chart{position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:18px;height:280px;padding:18px 10px 0}
+.bar-col{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:10px;flex:1;position:relative;height:100%}
+.bar-value{font-size:17px;font-weight:900;color:#243a5e}
+.bar{width:min(78px,100%);border-radius:18px 18px 8px 8px;background:linear-gradient(180deg,#8fb6e8 0%, #4e82c5 100%);position:relative;box-shadow:inset 0 -8px 0 rgba(255,255,255,.16),0 8px 18px rgba(58,101,164,.18)}
+.bar-year{margin-top:4px;color:#4d5d78;font-size:14px;font-weight:800}
+.bar-note{font-size:13px;font-weight:900;color:#c2410c;background:#fff4eb;padding:6px 8px;border-radius:999px;border:1px solid #fed7aa;position:absolute;right:-8px;bottom:-14px}
+.axis-labels{position:absolute;left:10px;top:10px;display:grid;gap:34px;color:#73839d;font-size:12px;font-weight:700}
+.pie-layout{display:grid;grid-template-columns:240px 1fr;gap:10px;align-items:center;justify-items:center;flex:1;min-height:0}
+.pie-wrap{width:240px;height:240px;display:flex;align-items:center;justify-content:center;padding:0;margin:0 auto;min-width:240px}
+.pie-chart{position:relative;width:220px;height:220px;margin:0 auto;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 12px 22px rgba(36,58,94,.14));overflow:visible}
+.pie-svg{width:220px;height:220px;overflow:visible}
+.pie-seg{fill:none;stroke-width:42;transition:transform .22s ease, opacity .22s ease, filter .22s ease, stroke-width .22s ease;transform-origin:120px 120px}
+.pie-seg.dim{opacity:.22}
+.pie-seg.active{transform:scale(1.04);stroke-width:48;filter:brightness(1.08)}
+.pie-hole{fill:#ffffff}
+.pie-center-labels{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;pointer-events:none;z-index:2;text-align:center}
+.pie-center-big{font-size:24px;font-weight:900;line-height:1;color:#1f3d63}
+.pie-center-small{margin-top:5px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#6a7d96}
+.pie-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:1;text-align:center}
+.pie-center strong{font-size:34px;line-height:1;color:#243a5e}
+.pie-center span{font-size:13px;color:#607089;font-weight:800;letter-spacing:.06em}
+.share-grid{display:grid;gap:8px;width:100%;align-content:center;position:relative;padding-left:24px}
+.share-row{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;padding:6px 8px;border-radius:12px;border:1px solid transparent;transition:transform .2s ease, background .2s ease, box-shadow .2s ease, border-color .2s ease;cursor:pointer;position:relative}
+.share-dot{width:16px;height:16px;border-radius:50%;margin-top:0;box-shadow:0 0 0 5px rgba(255,255,255,.72);transition:transform .2s ease}
+.share-name{font-weight:900;color:#243a5e;font-size:14px;letter-spacing:.02em}
+.share-val{font-size:12px;color:#42526b;font-weight:800}
+.share-card-text{display:grid;gap:4px}
+.share-percent-badge{display:inline-flex;align-items:center;justify-content:center;padding:4px 10px;border-radius:999px;background:linear-gradient(90deg,#eef5ff,#f5fbef);border:1px solid #d9e6f5;color:#24476e;font-size:13px;font-weight:900;white-space:nowrap;min-width:50px}
+.share-row::before{
+  content:'';
+  position:absolute;
+  left:-32px;
+  top:50%;
+  width:24px;
+  height:2px;
+  background:linear-gradient(90deg, rgba(171,189,214,.15), rgba(147,172,205,.95));
+  border-radius:999px;
+  transform:translateY(-50%);
+  transition:width .22s ease, left .22s ease, background .22s ease, opacity .22s ease;
+}
+.share-row::after{
+  content:'';
+  position:absolute;
+  left:-12px;
+  top:50%;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#c8d8ec;
+  transform:translateY(-50%);
+  box-shadow:0 0 0 3px rgba(255,255,255,.9);
+  transition:left .22s ease, transform .22s ease, background .22s ease;
+}
+.share-row:nth-child(1)::before{width:58px;left:-66px}
+.share-row:nth-child(2)::before{width:46px;left:-54px}
+.share-row:nth-child(3)::before{width:36px;left:-44px}
+.share-row:nth-child(4)::before{width:34px;left:-42px}
+.share-row:nth-child(5)::before{width:40px;left:-48px}
+.share-row:nth-child(6)::before{width:52px;left:-60px}
+.share-row:nth-child(1)::after{left:-14px}
+.share-row:nth-child(2)::after{left:-14px}
+.share-row:nth-child(3)::after{left:-12px}
+.share-row:nth-child(4)::after{left:-10px}
+.share-row:nth-child(5)::after{left:-12px}
+.share-row:nth-child(6)::after{left:-14px}
+.share-row:hover::before,
+.share-row.is-active::before{
+  background:linear-gradient(90deg, rgba(145,181,77,.25), rgba(74,126,199,.95));
+}
+.share-row:hover::after,
+.share-row.is-active::after{
+  background:#7ea7d8;
+  transform:translateY(-50%) scale(1.18);
+}
+
+.share-row:hover,.share-row.is-active{background:#f6faff;transform:translateX(4px);box-shadow:0 8px 18px rgba(17,74,139,.08);border-color:#dfeaf8}
+.share-row:hover .share-dot,.share-row.is-active .share-dot{transform:scale(1.15)}
+.market-note{margin-top:14px;padding:12px 14px;border-radius:16px;background:#f6f9fd;color:#41526d;border:1px solid #e2eaf5;line-height:1.55}
+.market-note strong{color:var(--brand)}
+.competitor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.competitor-card{padding:22px;display:grid;gap:16px}
+.competitor-head{display:grid;grid-template-columns:160px 1fr;gap:16px;align-items:center}
+.competitor-logo{min-height:120px;border-radius:20px;border:1px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;padding:14px;overflow:hidden}
+.competitor-logo img{max-width:100%;max-height:88px;object-fit:contain;display:block}
+.logo-ellipse{max-height:110px !important}
+.wordmark-plain{display:flex;align-items:center;justify-content:center;width:100%;min-height:84px;border-radius:18px;font-weight:900;font-size:30px;letter-spacing:.02em;background:linear-gradient(135deg,#f7f1ff,#ece5ff);color:#6b4fb5}
+.competitor-title h3{margin:0;font-size:24px}.competitor-title p{margin:6px 0 0;color:var(--muted);line-height:1.5}
+.competitor-tags{display:flex;flex-wrap:wrap;gap:8px}.chip{display:inline-flex;align-items:center;gap:8px;padding:10px 13px;border-radius:999px;background:var(--brand-3);color:var(--brand);font-weight:800;font-size:14px;border:1px solid #cfe2fb}
+.competitor-card ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.65;display:grid;gap:8px}
+
+
+.metal-table-card{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:20px}
+.metal-table-wrap{overflow:auto;border-radius:18px;border:1px solid #dce6f2}
+.metal-table{width:100%;border-collapse:separate;border-spacing:0;min-width:980px;font-size:14px;line-height:1.45}
+.metal-table th,.metal-table td{padding:13px 14px;border-right:1px solid #dce6f2;border-bottom:1px solid #dce6f2;vertical-align:middle}
+.metal-table th:last-child,.metal-table td:last-child{border-right:none}
+.metal-table thead th{background:#f2f7fd;color:#243a5e;font-size:13px;font-weight:900;text-align:center;position:sticky;top:0;z-index:1}
+.metal-table thead th:first-child{text-align:left}
+.metal-table tbody tr:nth-child(even) td{background:#fbfdff}
+.metal-table .row-label{font-weight:900;color:#243a5e;text-align:center;min-width:280px;background:#f9fbfe}
+.metal-table td{text-align:center;color:#334155;font-weight:700}
+.metal-table .leader-col{background:linear-gradient(180deg,#eaf6e8 0%, #dff2dc 100%) !important;color:#1f5f2a;font-weight:900}
+.metal-table thead .leader-col{background:linear-gradient(180deg,#8dc63f 0%, #77b52b 100%) !important;color:#fff}
+.metal-table-note{margin-top:12px;padding:12px 14px;border-radius:14px;background:#f6faf1;border:1px solid #d8ebc3;color:#3d5f1e;font-weight:700}
+@media (max-width:760px){.metal-table-card{padding:14px}.metal-table{font-size:13px;min-width:900px}.metal-table th,.metal-table td{padding:11px 12px}.metal-table .row-label{min-width:240px}}
+
+
+@media (max-width:1180px){.market-grid,.competitor-grid{grid-template-columns:1fr}.pie-layout{grid-template-columns:1fr}.layout{grid-template-columns:1fr}.sidebar{display:none}.content{padding:12px}.mobile-topbar{display:block}.page-header h2{font-size:28px}.market-chart,.market-share{height:auto;min-height:auto}}
+@media (max-width:760px){.growth-chart{gap:10px;height:250px;padding-left:28px}.bar{width:58px}.bar-year{font-size:12px}.axis-labels{left:2px;font-size:11px;gap:29px}.pie-layout{grid-template-columns:1fr;justify-items:center}.pie-wrap{width:100%;height:auto}.pie-chart{width:240px;height:240px}.pie-svg{width:240px;height:240px}.pie-center-big{font-size:26px}.pie-center-small{font-size:11px}.share-row{grid-template-columns:auto 1fr auto}.share-name{font-size:14px}.share-val{font-size:12px}.competitor-head{grid-template-columns:1fr}.competitor-logo{min-height:126px;padding:16px}.competitor-logo img{max-height:92px}.logo-ellipse{max-height:100px !important}.wordmark-plain{min-height:90px;font-size:28px}}
+
+.compat-table-card{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:20px}
+.compat-table-wrap{overflow:auto;border-radius:18px;border:1px solid #dce6f2;background:#fff}
+.compat-table{width:100%;border-collapse:separate;border-spacing:0;min-width:980px;font-size:14px;line-height:1.35}
+.compat-table th,.compat-table td{padding:11px 12px;border-right:1px solid #cfdbea;border-bottom:1px solid #cfdbea;vertical-align:middle;text-align:center}
+.compat-table th:last-child,.compat-table td:last-child{border-right:none}
+.compat-table thead th{background:#eef5e8;color:#23364d;font-size:13px;font-weight:900;position:sticky;top:0;z-index:4}
+.compat-table .element-cell{position:sticky;left:0;z-index:3;background:#f7f9fc;text-align:left;font-weight:900;color:#243a5e;min-width:340px;max-width:340px}
+.compat-table thead .element-cell{z-index:5;background:#e7f0dd;text-align:center}
+.compat-table .mount-row td{background:#ffffff;color:#39485f;font-weight:800}
+.compat-table .mount-row .element-cell{background:#f7f9fc}
+.compat-table .result-row td{font-weight:900}
+.compat-table .result-row:nth-child(3n) td{background:#fbfdff}
+.compat-table .result-row .element-cell{background:#f7f9fc}
+.compat-table .result-good{background:#e8f8dc !important;color:#2f6b11}
+.compat-table .result-bad{background:#ffe8ef !important;color:#b42318}
+.compat-table .icon{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;font-size:15px;font-weight:900;line-height:1}
+.compat-table .result-good .icon{background:#cfeeae;color:#2f6b11}
+.compat-table .result-bad .icon{background:#ffd2dc;color:#b42318}
+.compat-table .star-note{font-size:12px;color:#667085;margin-top:12px}
+.compat-table .mount-text{display:block;text-align:center}
+.compat-table .section-title-center{width:100%;text-align:center}
+@media (max-width:760px){.compat-table-card{padding:14px}.compat-table{font-size:13px;min-width:920px}.compat-table th,.compat-table td{padding:10px 10px}.compat-table .element-cell{min-width:270px;max-width:270px}}
+
+
+/* ===== Mobile accordion for tables ===== */
+.mobile-accordion{display:none}
+.mobile-accordion-list{display:grid;gap:12px}
+.mobile-acc-item{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.mobile-acc-item summary{
+  list-style:none;
+  cursor:pointer;
+  padding:14px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  font-weight:900;
+  color:#15355d;
+  background:linear-gradient(180deg,#ffffff 0%, #f7fbff 100%);
+}
+.mobile-acc-item summary::-webkit-details-marker{display:none}
+.mobile-acc-title{font-size:15px;line-height:1.35}
+.mobile-acc-arrow{
+  flex:0 0 auto;
+  width:28px;height:28px;border-radius:999px;
+  display:inline-flex;align-items:center;justify-content:center;
+  background:#eaf3ff;color:#114a8b;font-size:16px;font-weight:900;
+  transition:transform .2s ease, background .2s ease;
+}
+.mobile-acc-item[open] .mobile-acc-arrow{transform:rotate(180deg);background:#dbeaff}
+.mobile-acc-body{padding:0 16px 16px}
+.mobile-chip-row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+.mobile-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 10px;border-radius:999px;
+  background:#eef5ff;color:#214f86;border:1px solid #d8e7fb;
+  font-size:12px;font-weight:800;
+}
+.mobile-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:8px;
+}
+.mobile-pair{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:10px;
+  align-items:center;
+  padding:10px 12px;
+  border:1px solid #e3ebf5;
+  border-radius:14px;
+  background:#fbfdff;
+}
+.mobile-pair .k{font-size:12px;font-weight:800;color:#667085}
+.mobile-pair .v{font-size:13px;font-weight:900;color:#243a5e;text-align:right}
+.mobile-pair .v.leader{color:#1f5f2a}
+.mobile-pair.good{background:#f3fbe9;border-color:#d9efbf}
+.mobile-pair.bad{background:#fff1f4;border-color:#ffd7df}
+.mobile-pair.good .v{color:#2f6b11}
+.mobile-pair.bad .v{color:#b42318}
+.mobile-mount{
+  margin:0 0 12px;
+  padding:10px 12px;
+  border-radius:14px;
+  background:#f6f9fd;
+  border:1px solid #e1e9f5;
+}
+.mobile-mount .label{display:block;font-size:11px;font-weight:900;color:#71839b;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.mobile-mount .value{display:block;font-size:13px;font-weight:800;color:#243a5e;line-height:1.4}
+.mobile-status{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:999px;
+  font-size:14px;font-weight:900;margin-right:8px;
+}
+.mobile-status.good{background:#cfeeae;color:#2f6b11}
+.mobile-status.bad{background:#ffd2dc;color:#b42318}
+.mobile-footnote{
+  margin-top:10px;
+  padding:10px 12px;
+  border-radius:14px;
+  background:#fff8ea;
+  border:1px solid #fde2a8;
+  color:#8a5a00;
+  font-size:12px;
+  font-weight:700;
+  line-height:1.45;
+}
+@media (max-width:760px){
+  .metal-table-card,.compat-table-card{display:none}
+  .mobile-accordion{display:block}
+  .section-head h3{font-size:20px;text-align:center;width:100%}
+}
+
+</style>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){
+m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+m[i].l=1*new Date();
+for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+})(window, document,"script","https://mc.yandex.ru/metrika/tag.js?id=108779561","ym");
+ym(108779561,"init",{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/108779561" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+</head>
+<body>
+<div class='layout'>
+<aside class='sidebar'>
+<a class='brand-link' href='index.html'><div class='brand-logo-wrap'><img class='brand-logo' src='assets/praktik_home.png' alt='ПРАКТИК Home'></div><div class='brand-copy'><h1>ПРАКТИК Home</h1><p>Внутренний портал по Гардеробной Системе ПРАКТИК Home</p></div></a>
+<nav class='nav'><a href='index.html'><span>🏠</span><span>Главная</span></a><a href='production.html'><span>🏭</span><span>Производство</span></a><a href='competitors.html' class='active'><span>⚔</span><span>Конкуренты</span></a><a href='sales.html'><span>💰</span><span>Продажи</span></a><a href='training.html'><span>🎓</span><span>Обучение</span></a><a href='tools.html'><span>📚</span><span>Полезные материалы</span></a><a href='news.html'><span>📰</span><span>Новости</span></a><a href='feedback.html'><span>💡</span><span>Улучшения сайта</span></a></nav>
+</aside>
+<main class='content'>
+<div class='mobile-topbar'><div class='mobile-topbar-inner'><div style='display:flex;align-items:center;gap:10px'><div class='brand-logo-wrap' style='width:46px;height:46px;border-radius:12px'><img class='brand-logo' src='assets/praktik_home.png' alt='ПРАКТИК Home'></div><div><strong>ПРАКТИК Home</strong><div class='muted-small'>Гардеробная система</div></div></div><button class='menu-btn' data-open-menu>Меню</button></div></div>
+<div class='mobile-drawer' id='drawer'><div class='mobile-drawer-panel'><a class='brand-link' href='index.html'><div class='brand-logo-wrap'><img class='brand-logo' src='assets/praktik_home.png' alt='ПРАКТИК Home'></div><div class='brand-copy'><h1>ПРАКТИК Home</h1><p>Внутренний портал по Гардеробной Системе ПРАКТИК Home</p></div></a><nav class='nav'><a href='index.html'><span>🏠</span><span>Главная</span></a><a href='production.html'><span>🏭</span><span>Производство</span></a><a href='competitors.html' class='active'><span>⚔</span><span>Конкуренты</span></a><a href='sales.html'><span>💰</span><span>Продажи</span></a><a href='training.html'><span>🎓</span><span>Обучение</span></a><a href='tools.html'><span>📚</span><span>Полезные материалы</span></a><a href='news.html'><span>📰</span><span>Новости</span></a><a href='feedback.html'><span>💡</span><span>Улучшения сайта</span></a></nav><div style='margin-top:12px'><button class='menu-btn' data-close-menu>Закрыть меню</button></div></div></div>
+
+<div class='page-header'>
+  <div class='breadcrumbs'>Главная / Конкуренты</div>
+  <div class="page-title-wow-wrap">
+    <div class="page-title-kicker">АНАЛИТИКА РЫНКА • СРАВНЕНИЕ • СОВМЕСТИМОСТЬ</div>
+    <h2 class="page-title-wow">Конкуренты и рынок гардеробных систем</h2>
+    <div class="page-title-subline">Ключевые игроки, технические параметры и совместимость элементов в одном разделе</div>
+  </div>
+  <p></p>
+</div>
+
+<section class='section'>
+  <div class='market-grid'>
+    <div class='market-chart'>
+      <h3 class='block-title'>Размер рынка ГС, млрд ₽ с НДС</h3>
+      <div class='chart-shell'>
+        <div class='chart-grid'></div>
+        <div class='axis-labels'>
+          <span>6,0</span>
+          <span>5,5</span>
+          <span>5,0</span>
+          <span>4,5</span>
+          <span>4,0</span>
+        </div>
+        <div class='growth-chart'>
+          <div class='bar-col'>
+            <div class='bar-value'>4,78</div>
+            <div class='bar' style='height:132px'></div>
+            <div class='bar-year'>2023 г</div>
+          </div>
+          <div class='bar-col'>
+            <div class='bar-value'>5,58</div>
+            <div class='bar' style='height:220px'></div>
+            <div class='bar-year'>2024 г</div>
+          </div>
+          <div class='bar-col'>
+            <div class='bar-value'>5,32</div>
+            <div class='bar' style='height:192px'></div>
+            <div class='bar-year'>2025 г</div>
+          </div>
+          <div class='bar-col'>
+            <div class='bar-value'>5,00</div>
+            <div class='bar' style='height:160px'><span class='bar-note'>-5%</span></div>
+            <div class='bar-year'>2026 г</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class='market-share'>
+      <h3 class='block-title'>Доли игроков, 2025 г</h3>
+      <div class='pie-layout'>
+        <div class='pie-wrap'>
+          <div class='pie-chart'>
+            <svg class='pie-svg' viewBox='0 0 240 240' aria-label='Доли игроков, 2025 г'>
+              <g transform='rotate(-90 120 120)'>
+                <circle class='pie-seg seg-0' data-seg='0' cx='120' cy='120' r='82' stroke='#8dc63f' stroke-dasharray='216.39 298.81' stroke-dashoffset='0'></circle>
+                <circle class='pie-seg seg-1' data-seg='1' cx='120' cy='120' r='82' stroke='#ff5a1f' stroke-dasharray='159.68 355.52' stroke-dashoffset='-216.39'></circle>
+                <circle class='pie-seg seg-2' data-seg='2' cx='120' cy='120' r='82' stroke='#e3a8a8' stroke-dasharray='77.26 437.94' stroke-dashoffset='-376.07'></circle>
+                <circle class='pie-seg seg-3' data-seg='3' cx='120' cy='120' r='82' stroke='#7c63b8' stroke-dasharray='25.75 489.45' stroke-dashoffset='-453.33'></circle>
+                <circle class='pie-seg seg-4' data-seg='4' cx='120' cy='120' r='82' stroke='#57b8d7' stroke-dasharray='25.75 489.45' stroke-dashoffset='-479.08'></circle>
+                <circle class='pie-seg seg-5' data-seg='5' cx='120' cy='120' r='82' stroke='#f59e0b' stroke-dasharray='10.30 504.90' stroke-dashoffset='-504.83'></circle>
+              </g>
+              <circle class='pie-hole' cx='120' cy='120' r='46'></circle>
+            </svg>
+            <div class='pie-center-labels'>
+              <div class='pie-center-big'>2025</div>
+              <div class='pie-center-small'>доли рынка</div>
+            </div>
+          </div>
+        </div>
+        <div class='share-grid'>
+          <div class='share-row' data-seg='0'><span class='share-dot' style='background:#8dc63f'></span><div class='share-card-text'><div class='share-name'>АРИСТО</div><div class='share-val'>2236 млн ₽</div></div><span class='share-percent-badge'>42%</span></div>
+          <div class='share-row' data-seg='1'><span class='share-dot' style='background:#ff5a1f'></span><div class='share-card-text'><div class='share-name'>ТИТАН GS</div><div class='share-val'>1640 млн ₽</div></div><span class='share-percent-badge'>31%</span></div>
+          <div class='share-row' data-seg='2'><span class='share-dot' style='background:#f3b8b8'></span><div class='share-card-text'><div class='share-name'>LARVIJ</div><div class='share-val'>803 млн ₽</div></div><span class='share-percent-badge'>15%</span></div>
+          <div class='share-row' data-seg='3'><span class='share-dot' style='background:#7c63b8'></span><div class='share-card-text'><div class='share-name'>ABELLE</div><div class='share-val'>283 млн ₽</div></div><span class='share-percent-badge'>5%</span></div>
+          <div class='share-row' data-seg='4'><span class='share-dot' style='background:#57b8d7'></span><div class='share-card-text'><div class='share-name'>ПРОМЕТ</div><div class='share-val'>280 млн ₽</div></div><span class='share-percent-badge'>5%</span></div>
+          <div class='share-row' data-seg='5'><span class='share-dot' style='background:#f59e0b'></span><div class='share-card-text'><div class='share-name'>ПРОЧИЕ</div><div class='share-val'>81 млн ₽</div></div><span class='share-percent-badge'>2%</span></div>
+        </div>
+      </div>
+</div>
+</section>
+
+<section class='section'>
+  <div class='section-head'><div><h3>ПРОИЗВОДИТЕЛИ ГАРДЕРОБНЫХ СИСТЕМ</h3><p>Для ключевых брендов добавлены переходы на официальный сайт и в конфигуратор, где он доступен.</p></div></div>
+  <div class='competitor-grid'>
+
+    <div class='competitor-card'>
+      <div class='competitor-head'>
+        <div class='competitor-logo'><img src='assets/logo/titangs_logo_crop.png' alt='Титан GS' class='logo-ellipse'></div>
+        <div class='competitor-title'><h3>Титан GS</h3><p>Российский бренд гардеробных систем, входящий в группу компаний ПАКС‑Металл. Делает акцент на собственном производстве полного цикла в России, европейском оборудовании и широком складском наличии.</p></div>
+      </div>
+      <div class='competitor-tags'>
+        <a class='chip' href='https://titangs.ru/' target='_blank' rel='noopener'>Официальный сайт</a>
+        <a class='chip' href='https://titangs.ru/titangs/' target='_blank' rel='noopener'>Конфигуратор</a>
+      </div>
+      <ul>
+        <li>Является частью группы компаний ПАКС‑Металл, основанной в 1991 году.</li>
+        <li>Собственное производство металлических элементов в г. Химки, выпуск гардеробных систем с 2016 года.</li>
+        <li>Покупные элементы из пластика и массива дуба/березы</li>
+        <li>В коммуникации делает акцент на европейском оборудовании, долгосрочном партнерстве и гарантии 10 лет.</li>
+        <li>Копировалась с системы Larvij</li>
+         <li>Цветовая палитра: белый, черный, серый</li>
+         <li>ГС ЭКО - эконом серия для собственных продаж на MarketPlace. Изменена габаритные размеры и толщина металла в меньшую сторону</li>
+      </ul>
+    </div>
+
+    <div class='competitor-card'>
+      <div class='competitor-head'>
+        <div class='competitor-logo'><img src='assets/logo/aristo_logo_crop.png' alt='Aristo' class='logo-ellipse'></div>
+        <div class='competitor-title'><h3>Aristo</h3><p>Крупный российский бренд интерьерных решений и систем хранения. ARISTO подчеркивает широкий продуктовый портфель: гардеробные системы, двери‑купе, перегородки, мебель на заказ и комплектующие.</p></div>
+      </div>
+      <div class='competitor-tags'>
+        <a class='chip' href='https://www.aristo.ru/' target='_blank' rel='noopener'>Официальный сайт</a>
+        <a class='chip' href='https://start.binaroom.com/' target='_blank' rel='noopener'>Конфигуратор (только для дилеров)</a>
+      </div>
+      <ul>
+        <li>Делает ставку на качество: надежность систем, плавность выдвижных механизмов, долгий срок эксплуатации, повышенные нагрузки и износостойкость.</li>
+        <li>Предлагается комплексное обустройство места хранения: навесная и встраиваемая система хранения, двери купе, мебель из ЛДСП, массива и декора кожей</li>
+        <li>Для продаж использует сильную проектную подачу, акцент на дизайне и комплексных решениях для интерьера.</li>
+        <li>Копировалась с системы Elfa.</li>
+        <li>НСХ (навесная система хранения) - СТМ под ЛеманаПРО, LIGROOM - эконом серия для MArketPlace (копия НСХ)</li>
+      </ul>
+    </div>
+
+    <div class='competitor-card'>
+      <div class='competitor-head'>
+        <div class='competitor-logo'><img src='assets/logo/larvij_logo_crop.png' alt='Larvij' class='logo-ellipse'></div>
+        <div class='competitor-title'><h3>Larvij</h3><p>Известный бренд систем хранения для дома. Производится в Китае. Позиционирует себя как производитель с многолетним опытом и акцентом на порядок, уют, дизайн и широкий выбор решений для разных пространств.</p></div>
+      </div>
+      <div class='competitor-tags'>
+        <a class='chip' href='https://larvij.com/' target='_blank' rel='noopener'>Официальный сайт</a>
+        <a class='chip' href='https://larvij.com/constructors/wardrobe/' target='_blank' rel='noopener'>Конфигуратор</a>
+      </div>
+      <ul>
+        <li>Акцент на присутствии в крупнейших ритейл‑сетях России.</li>
+        <li>Большое разнообразие цветовых решений: белый, черный, серый, магнолия (слоновая кость)</li>
+        <li>Акцент на качественной и презентабельной упаковке.</li>
+        <li>В ассортименте компании: классическая гардеробная система, трубная лофт система Pipe, наполнение для шкафов Armario, органайзеры и вешалки</li>
+      </ul>
+    </div>
+
+    <div class='competitor-card'>
+      <div class='competitor-head'>
+        <div class='competitor-logo'><img src='assets/logo/elfa_logo_crop.png' alt='Elfa' class='logo-ellipse'></div>
+        <div class='competitor-title'><h3>Elfa</h3><p>Международный бренд систем хранения шведского происхождения. Компания Elfa всегда подчеркивает долгую историю бренда, широкий ассортимент и позиционирование как одного из лидеров категории.</p></div>
+      </div>
+      <div class='competitor-tags'>
+        <a class='chip' href='https://elfarus.ru/' target='_blank' rel='noopener'>Официальный сайт РФ</a>
+        <a class='chip' href='https://elfa.com/sv-se/produkter/classic-by-elfa' target='_blank' rel='noopener'>Официальный сайт Швеция</a>
+        <a class='chip' href='https://elfa.com/sv-se/planering/planner?&assortmentids=11001,93001,95001,94001' target='_blank' rel='noopener'>Конфигуратор</a>
+      </div>
+      <ul>
+        <li>Elfa International AB - основана в Швеции в 1947 году. Классическая ГС, которую мы знаем стала производиться с конца 80-х годов</li>
+        <li>Родоначальник и ведущий производитель сетчатых систем хранения.</li>
+        <li>Ассортимент более 800 элементов для гардеробных, кладовых, детских, прихожих, гаражей и домашних офисов</li>
+         <li>Цветовая палитра: белый, платина, графит</li>
+      </ul>
+    </div>
+
+    <div class='competitor-card'>
+      <div class='competitor-head'>
+        <div class='competitor-logo'><img src='assets/logo/abelle_logo_crop.png' alt='Elfa' class='logo-ellipse'></div>
+        <div class='competitor-title'><h3>A'Belle</h3><p>Российский бренд систем хранения. Делает акцент на самостоятельную продажу готовых комплектов через MarketPlace.</p></div>
+      </div>
+      <div class='competitor-tags'>
+        <a class='chip' href='https://xn--80adahgbihed5bnbcdcjslocbsf1f6n.xn--p1ai/' target='_blank' rel='noopener'>Официальный сайт</a>
+        <a class='chip' href='https://xn--j1aaidckcejcj.xn--80adahgbihed5bnbcdcjslocbsf1f6n.xn--p1ai/' target='_blank' rel='noopener'>Конфигуратор</a>
+      </div>
+      <ul>
+        <li>Российский бренд систем хранения A’Belle. Производство г. Ульяновск.</li>
+        <li>Основной канал продаж MarketPlace за счет собственных продаж готовых комплектов.</li>
+        <li>Низкое качество обработки металла и покраски, премитивная упаковка</li>
+        <li>Копировалась с Титан GS.</li>
+        <li>Слыбый ассортимент: рельсы, стойки, кронштейны полок, сетчатые полки, прутковые корзинки, вспомогательные аксессуары</li>
+        <li>Цветовая палитра: белый, черный, серый</li>
+        </ul>
+    </div>
+
+    <div class='competitor-card'>
+      <div class='competitor-head'>
+        <div class='competitor-logo'><img src='assets/logo/gardie_logo_crop.png' alt='Gardie' class='logo-ellipse'></div>
+        <div class='competitor-title'><h3>Gardie</h3><p>Российский бренд гардеробных систем и универсальных решений для хранения.</p></div>
+      </div>
+      <div class='competitor-tags'>
+        <a class='chip' href='https://gardie-design.com/' target='_blank' rel='noopener'>Официальный сайт</a>
+      </div>
+      <ul>
+        <li>Основной канал продаж через розничные точки дилеров. На MarketPlace представлен брендом Gards</li>
+        <li>Частичное производство в РФ, часть элементов покупается на стороне.</li></li>
+        <li>Кипировалось с систем Aristo/Elfa</li>
+        <li>Цветовая палитра: белый, графит (муар), серый</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+<section class='section'>
+  <div class='section-head'>
+    <div>
+      <h3>Таблица техособенностей элементов ГС (в миллиметрах)</h3>
+         </div>
+  </div>
+  <div class='metal-table-card'>
+    <div class='metal-table-wrap'>
+      <table class='metal-table'>
+        <thead>
+          <tr>
+            <th>Бренд / элемент системы</th><th class='leader-col'>ПРАКТИК</th><th>Титан GS</th><th>ГС ЭКО</th><th>Aristo</th><th>Ligroom | НСХ</th><th>Larvij</th><th>A`Belle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class='row-label'>Рельс несущий (металл/сечение профиля)</td><td class='leader-col'>1.2</td><td>1.2</td><td>—</td><td>—</td><td>—</td><td>1.2</td><td>1.2</td></tr><tr><td class='row-label'>Стойка / Направляющая (металл/сечение профиля)</td><td class='leader-col'>1.5 / 25х25</td><td>1.8 / 27х25</td><td>1.5 / 27х16</td><td>2.0 / 25х18</td><td>1.8 / 25х18</td><td>1.5 / 26х23</td><td>1.5 / 28х23</td></tr><tr><td class='row-label'>Кронштейн полки</td><td class='leader-col'>1.2</td><td>1.2</td><td>1</td><td>1.2</td><td>1.2</td><td>1.2</td><td>1.2</td></tr><tr><td class='row-label'>Полка сетчатая (диаметр и шаг прутка)</td><td class='leader-col'>6 и 2.5 / 20</td><td>6 и 2.5 / 20</td><td>5 и 2.5 / 25</td><td>6 и 2.5 / 14</td><td>5 и 2.5 / 25</td><td>6 и 2.5 / 20</td><td>6 и 2.0 / 20</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class='mobile-accordion'>
+    <div class='mobile-accordion-list'>
+      
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Рельс несущий (металл/сечение профиля)</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-grid'>
+          <div class='mobile-pair'><div class='k'>ПРАКТИК</div><div class='v leader'>1.2</div></div><div class='mobile-pair'><div class='k'>Титан GS</div><div class='v'>1.2</div></div><div class='mobile-pair'><div class='k'>ГС ЭКО</div><div class='v'>—</div></div><div class='mobile-pair'><div class='k'>Aristo</div><div class='v'>—</div></div><div class='mobile-pair'><div class='k'>Ligroom | НСХ</div><div class='v'>—</div></div><div class='mobile-pair'><div class='k'>Larvij</div><div class='v'>1.2</div></div><div class='mobile-pair'><div class='k'>A`Belle</div><div class='v'>1.2</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Стойка / Направляющая (металл/сечение профиля)</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-grid'>
+          <div class='mobile-pair'><div class='k'>ПРАКТИК</div><div class='v leader'>1.5 / 25х25</div></div><div class='mobile-pair'><div class='k'>Титан GS</div><div class='v'>1.8 / 27х25</div></div><div class='mobile-pair'><div class='k'>ГС ЭКО</div><div class='v'>1.5 / 27х16</div></div><div class='mobile-pair'><div class='k'>Aristo</div><div class='v'>2.0 / 25х18</div></div><div class='mobile-pair'><div class='k'>Ligroom | НСХ</div><div class='v'>1.8 / 25х18</div></div><div class='mobile-pair'><div class='k'>Larvij</div><div class='v'>1.5 / 26х23</div></div><div class='mobile-pair'><div class='k'>A`Belle</div><div class='v'>1.5 / 28х23</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Кронштейн полки</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-grid'>
+          <div class='mobile-pair'><div class='k'>ПРАКТИК</div><div class='v leader'>1.2</div></div><div class='mobile-pair'><div class='k'>Титан GS</div><div class='v'>1.2</div></div><div class='mobile-pair'><div class='k'>ГС ЭКО</div><div class='v'>1</div></div><div class='mobile-pair'><div class='k'>Aristo</div><div class='v'>1.2</div></div><div class='mobile-pair'><div class='k'>Ligroom | НСХ</div><div class='v'>1.2</div></div><div class='mobile-pair'><div class='k'>Larvij</div><div class='v'>1.2</div></div><div class='mobile-pair'><div class='k'>A`Belle</div><div class='v'>1.2</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Полка сетчатая (диаметр и шаг прутка)</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-grid'>
+          <div class='mobile-pair'><div class='k'>ПРАКТИК</div><div class='v leader'>6 и 2.5 / 20</div></div><div class='mobile-pair'><div class='k'>Титан GS</div><div class='v'>6 и 2.5 / 20</div></div><div class='mobile-pair'><div class='k'>ГС ЭКО</div><div class='v'>5 и 2.5 / 25</div></div><div class='mobile-pair'><div class='k'>Aristo</div><div class='v'>6 и 2.5 / 14</div></div><div class='mobile-pair'><div class='k'>Ligroom | НСХ</div><div class='v'>5 и 2.5 / 25</div></div><div class='mobile-pair'><div class='k'>Larvij</div><div class='v'>6 и 2.5 / 20</div></div><div class='mobile-pair'><div class='k'>A`Belle</div><div class='v'>6 и 2.0 / 20</div></div>
+        </div>
+      </div>
+    </details>
+    </div>
+    <div class='mobile-footnote'>ПРАКТИК Home выделен как базовый ориентир для сравнения.</div>
+  </div>
+
+</section>
+
+
+
+<section class='section'>
+  <div class='section-head'>
+    <div class='section-title-center'>
+      <h3 style='text-align:center'>Совместимость элементов системы ПРАКТИК Home и сторонних производителей гардеробных систем</h3>
+    </div>
+  </div>
+  <div class='compat-table-card'>
+    <div class='compat-table-wrap'>
+      <table class='compat-table'>
+        <thead>
+          <tr>
+            <th class='element-cell'>ПРАКТИК Home</th>
+            <th>Титан GS</th>
+            <th>Larvij</th>
+            <th>Elfa</th>
+            <th>Aristo</th>
+            <th>НСХ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class='mount-row'><td class='element-cell' rowspan='2'>Кронштейн штанги GRBn</td><td colspan='5'><span class='mount-text'>Кронштейн полки 300/400/500</span></td></tr><tr class='result-row'><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Корзина навесная GBC</td><td colspan='5'><span class='mount-text'>Стойка</span></td></tr><tr class='result-row'><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Рама выдвижная с доводчиком GFBс-60</td><td colspan='5'><span class='mount-text'>Корзина мелкосетчатая / пластиковая (под секцию 607 мм)</span></td></tr><tr class='result-row'><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Панель с крючками боковая GHB-30/40</td><td colspan='5'><span class='mount-text'>Кронштейн полки 300/400</span></td></tr><tr class='result-row'><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Полка боковая GPB-30/40</td><td colspan='5'><span class='mount-text'>Кронштейн полки 300/400</span></td></tr><tr class='result-row'><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Сушилка для белья GD-60</td><td colspan='5'><span class='mount-text'>Стойка</span></td></tr><tr class='result-row'><td class='result-good'><span class='icon'>✓</span>*</td><td class='result-good'><span class='icon'>✓</span>*</td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span>*</td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Упор боковой GS</td><td colspan='5'><span class='mount-text'>Стойка</span></td></tr><tr class='result-row'><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Комплект накладок на кронштейн GPL</td><td colspan='5'><span class='mount-text'>Кронштейн полки 300/400</span></td></tr><tr class='result-row'><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Полка-корзина GSb</td><td colspan='5'><span class='mount-text'>Кронштейн полки 300/400</span></td></tr><tr class='result-row'><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-bad'><span class='icon'>✕</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Полка металлическая GSm 60×30 / 60×40</td><td colspan='5'><span class='mount-text'>Кронштейн полки 300/400</span></td></tr><tr class='result-row'><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-bad'><span class='icon'>✕</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Комплект боковых креплений GSF-40</td><td colspan='5'><span class='mount-text'>Полки сетчатые и выдвижные элементы</span></td></tr><tr class='result-row'><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-bad'><span class='icon'>✕</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Полка GPS-60/90</td><td colspan='5'><span class='mount-text'>Стойка</span></td></tr><tr class='result-row'><td class='result-good'><span class='icon'>✓</span>*</td><td class='result-good'><span class='icon'>✓</span>*</td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span>*</td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Панель с крючками GHS-60/90</td><td colspan='5'><span class='mount-text'>Стойка</span></td></tr><tr class='result-row'><td class='result-good'><span class='icon'>✓</span>*</td><td class='result-good'><span class='icon'>✓</span>*</td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span>*</td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Разделитель полки-корзины GPd 30×10 / 40×10</td><td colspan='5'><span class='mount-text'>Полка-корзина</span></td></tr><tr class='result-row'><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Вешало торцевое GRh-30/40</td><td colspan='5'><span class='mount-text'>Полка сетчатая глубиной 30 и 40 см</span></td></tr><tr class='result-row'><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-bad'><span class='icon'>✕</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Кронштейн полки плоский GBrF</td><td colspan='5'><span class='mount-text'>Стойка</span></td></tr><tr class='result-row'><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Полка мелкосетчатая GShM 60×40</td><td colspan='5'><span class='mount-text'>Кронштейн полки 400</span></td></tr><tr class='result-row'><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Стойка GR</td><td colspan='5'><span class='mount-text'>Рельс</span></td></tr><tr class='result-row'><td class='result-bad'><span class='icon'>✕</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Кронштейн полки GBr-30</td><td colspan='5'><span class='mount-text'>Сетчатая полка глубиной 300 мм</span></td></tr><tr class='result-row'><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-bad'><span class='icon'>✕</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Кронштейн полки GBr-40U</td><td colspan='5'><span class='mount-text'>Сетчатая полка и стационарные обувницы глубиной 400 мм + все выдвижные элементы</span></td></tr><tr class='result-row'><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-bad'><span class='icon'>✕</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Кронштейн полки GBr-50</td><td colspan='5'><span class='mount-text'>Сетчатая полка глубиной 500 мм</span></td></tr><tr class='result-row'><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-bad'><span class='icon'>✕</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Сетчатая полка GSh глубиной 305 мм</td><td colspan='5'><span class='mount-text'>Кронштейн полки 300</span></td></tr><tr class='result-row'><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-bad'><span class='icon'>✕</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Сетчатая полка GSh глубиной 405 мм</td><td colspan='5'><span class='mount-text'>Кронштейн полки 400</span></td></tr><tr class='result-row'><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-bad'><span class='icon'>✕</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Сетчатая полка GSh глубиной 494 мм</td><td colspan='5'><span class='mount-text'>Кронштейн полки 500</span></td></tr><tr class='result-row'><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-bad'><span class='icon'>✕</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Рама выдвижная 450/600 мм</td><td colspan='5'><span class='mount-text'>Корзина мелкосетчатая / пластиковая</span></td></tr><tr class='result-row'><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Корзина мелкосетчатая GBM / пластиковая GBP</td><td colspan='5'><span class='mount-text'>Выдвижная рама</span></td></tr><tr class='result-row'><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Обувница GO</td><td colspan='5'><span class='mount-text'>Кронштейн полки 400</span></td></tr><tr class='result-row'><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-bad'><span class='icon'>✕</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Обувница выдвижная GOV</td><td colspan='5'><span class='mount-text'>Кронштейн полки 400</span></td></tr><tr class='result-row'><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Кронштейны полки ЛДСП GBrW-30</td><td colspan='5'><span class='mount-text'>Кронштейн полки 300</span></td></tr><tr class='result-row'><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-bad'><span class='icon'>✕</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Кронштейны полки ЛДСП GBrW-40</td><td colspan='5'><span class='mount-text'>Кронштейн полки 400</span></td></tr><tr class='result-row'><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-bad'><span class='icon'>✕</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Кронштейны полки ЛДСП GBrW-50</td><td colspan='5'><span class='mount-text'>Кронштейн полки 500</span></td></tr><tr class='result-row'><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-bad'><span class='icon'>✕</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Полка ЛДСП GShW шириной 435 / 592 / 889 мм</td><td colspan='5'><span class='mount-text'>Кронштейн полки ЛДСП</span></td></tr><tr class='result-row'><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-bad'><span class='icon'>✕</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Штанги GR</td><td colspan='5'><span class='mount-text'>Кронштейн штанги</span></td></tr><tr class='result-row'><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Брючницы выдвижные GT</td><td colspan='5'><span class='mount-text'>Кронштейн полки 400</span></td></tr><tr class='result-row'><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Заглушки GRP и соединитель штанг GRC</td><td colspan='5'><span class='mount-text'>Штанги</span></td></tr><tr class='result-row'><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Соединитель стоек GSC</td><td colspan='5'><span class='mount-text'>Стойки</span></td></tr><tr class='result-row'><td class='result-bad'><span class='icon'>✕</span></td><td class='result-bad'><span class='icon'>✕</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-bad'><span class='icon'>✕</span></td></tr><tr class='mount-row'><td class='element-cell' rowspan='2'>Перфопанель GP</td><td colspan='5'><span class='mount-text'>Стойки</span></td></tr><tr class='result-row'><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td><td class='result-good'><span class='icon'>✓</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class='star-note'>* размеры секций должны соответствовать ширине 607 мм.</div>
+  </div>
+
+  <div class='mobile-accordion'>
+    <div class='mobile-accordion-list'>
+      
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Кронштейн штанги GRBn</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Кронштейн полки 300/400/500</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair bad'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Larvij</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>НСХ</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Корзина навесная GBC</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Стойка</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair good'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Larvij</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>НСХ</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Рама выдвижная с доводчиком GFBс-60</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Корзина мелкосетчатая / пластиковая (под секцию 607 мм)</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair bad'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Larvij</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Elfa</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Aristo</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>НСХ</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Панель с крючками боковая GHB-30/40</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Кронштейн полки 300/400</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair good'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Larvij</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>НСХ</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Полка боковая GPB-30/40</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Кронштейн полки 300/400</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair good'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Larvij</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>НСХ</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Сушилка для белья GD-60</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Стойка</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair good'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо *</div></div><div class='mobile-pair good'><div class='k'>Larvij</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо *</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>НСХ</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо *</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Упор боковой GS</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Стойка</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair good'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Larvij</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>НСХ</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Комплект накладок на кронштейн GPL</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Кронштейн полки 300/400</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair good'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Larvij</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>НСХ</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Полка-корзина GSb</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Кронштейн полки 300/400</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair bad'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Larvij</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair bad'><div class='k'>НСХ</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Полка металлическая GSm 60×30 / 60×40</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Кронштейн полки 300/400</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair good'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Larvij</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair bad'><div class='k'>НСХ</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Комплект боковых креплений GSF-40</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Полки сетчатые и выдвижные элементы</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair bad'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Larvij</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair bad'><div class='k'>НСХ</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Полка GPS-60/90</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Стойка</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair good'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо *</div></div><div class='mobile-pair good'><div class='k'>Larvij</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо *</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>НСХ</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо *</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Панель с крючками GHS-60/90</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Стойка</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair good'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо *</div></div><div class='mobile-pair good'><div class='k'>Larvij</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо *</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>НСХ</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо *</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Разделитель полки-корзины GPd 30×10 / 40×10</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Полка-корзина</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair bad'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Larvij</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Elfa</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Aristo</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>НСХ</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Вешало торцевое GRh-30/40</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Полка сетчатая глубиной 30 и 40 см</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair good'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Larvij</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair bad'><div class='k'>НСХ</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Кронштейн полки плоский GBrF</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Стойка</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair good'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Larvij</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>НСХ</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Полка мелкосетчатая GShM 60×40</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Кронштейн полки 400</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair bad'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Larvij</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Elfa</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Aristo</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>НСХ</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Стойка GR</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Рельс</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair bad'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair good'><div class='k'>Larvij</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>НСХ</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Кронштейн полки GBr-30</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Сетчатая полка глубиной 300 мм</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair good'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Larvij</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair bad'><div class='k'>НСХ</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Кронштейн полки GBr-40U</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Сетчатая полка и стационарные обувницы глубиной 400 мм + все выдвижные элементы</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair good'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Larvij</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair bad'><div class='k'>НСХ</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Кронштейн полки GBr-50</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Сетчатая полка глубиной 500 мм</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair bad'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Larvij</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair bad'><div class='k'>НСХ</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Сетчатая полка GSh глубиной 305 мм</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Кронштейн полки 300</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair good'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Larvij</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair bad'><div class='k'>НСХ</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Сетчатая полка GSh глубиной 405 мм</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Кронштейн полки 400</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair bad'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Larvij</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair bad'><div class='k'>НСХ</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Сетчатая полка GSh глубиной 494 мм</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Кронштейн полки 500</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair bad'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Larvij</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair bad'><div class='k'>НСХ</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Рама выдвижная 450/600 мм</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Корзина мелкосетчатая / пластиковая</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair bad'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Larvij</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair bad'><div class='k'>Aristo</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>НСХ</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Корзина мелкосетчатая GBM / пластиковая GBP</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Выдвижная рама</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair bad'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Larvij</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair bad'><div class='k'>Aristo</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>НСХ</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Обувница GO</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Кронштейн полки 400</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair bad'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Larvij</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair bad'><div class='k'>НСХ</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Обувница выдвижная GOV</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Кронштейн полки 400</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair bad'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Larvij</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Elfa</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Aristo</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>НСХ</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Кронштейны полки ЛДСП GBrW-30</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Кронштейн полки 300</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair good'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Larvij</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair bad'><div class='k'>НСХ</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Кронштейны полки ЛДСП GBrW-40</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Кронштейн полки 400</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair good'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Larvij</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair bad'><div class='k'>НСХ</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Кронштейны полки ЛДСП GBrW-50</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Кронштейн полки 500</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair bad'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Larvij</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair bad'><div class='k'>НСХ</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Полка ЛДСП GShW шириной 435 / 592 / 889 мм</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Кронштейн полки ЛДСП</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair good'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Larvij</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair bad'><div class='k'>НСХ</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Штанги GR</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Кронштейн штанги</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair good'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Larvij</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>НСХ</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Брючницы выдвижные GT</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Кронштейн полки 400</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair bad'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Larvij</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Elfa</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Aristo</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>НСХ</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Заглушки GRP и соединитель штанг GRC</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Штанги</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair good'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Larvij</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>НСХ</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Соединитель стоек GSC</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Стойки</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair bad'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair bad'><div class='k'>Larvij</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair bad'><div class='k'>НСХ</div><div class='v'><span class='mobile-status bad'>✕</span>Не совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    <details class='mobile-acc-item'>
+      <summary><span class='mobile-acc-title'>Перфопанель GP</span><span class='mobile-acc-arrow'>⌄</span></summary>
+      <div class='mobile-acc-body'>
+        <div class='mobile-mount'><span class='label'>Базовый элемент</span><span class='value'>Стойки</span></div>
+        <div class='mobile-grid'>
+          <div class='mobile-pair good'><div class='k'>Титан GS</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Larvij</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Elfa</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>Aristo</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div><div class='mobile-pair good'><div class='k'>НСХ</div><div class='v'><span class='mobile-status good'>✓</span>Совместимо</div></div>
+        </div>
+      </div>
+    </details>
+    </div>
+    <div class='mobile-footnote'>* размеры секций должны соответствовать ширине 607 мм.</div>
+  </div>
+
+</section>
+
+<div class='footer'><div>Портал ПРАКТИК Home</div><div>Разработано специалистами по развитию товарного направления Гардеробные Системы, 2026 год</div></div>
+</main></div>
+<script>
+const drawer=document.getElementById('drawer');
+document.querySelectorAll('[data-open-menu]').forEach(b=>b.onclick=()=>drawer.classList.add('open'));
+document.querySelectorAll('[data-close-menu]').forEach(b=>b.onclick=()=>drawer.classList.remove('open'));
+if(drawer)drawer.addEventListener('click',e=>{if(e.target===drawer)drawer.classList.remove('open')});
+
+const pieRows=document.querySelectorAll('.share-row[data-seg]');
+const pieSegs=document.querySelectorAll('.pie-seg');
+function setActiveSeg(idx){
+  pieSegs.forEach((seg,i)=>{
+    seg.classList.toggle('active', i===idx);
+    seg.classList.toggle('dim', idx!==null && i!==idx);
+  });
+  pieRows.forEach((row,i)=>row.classList.toggle('is-active', i===idx));
+}
+pieRows.forEach((row,i)=>{
+  row.addEventListener('mouseenter',()=>setActiveSeg(i));
+  row.addEventListener('mouseleave',()=>setActiveSeg(null));
+  row.addEventListener('focusin',()=>setActiveSeg(i));
+  row.addEventListener('focusout',()=>setActiveSeg(null));
+});
+pieSegs.forEach((seg,i)=>{
+  seg.addEventListener('mouseenter',()=>setActiveSeg(i));
+  seg.addEventListener('mouseleave',()=>setActiveSeg(null));
+});
+
+</script>
+</body>
+</html>
